@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Mandaloni\'s Parcelator</string>
+    <string name="valor">Valor principal</string>
+    <string name="calcular">Calcular</string>
+    <string name="taxa_debito">Taxa</string>
+    <string name="valor_tx_debito">Valor Tarifa</string>
+    <string name="valor_total_debito">Valor Total</string>
+    <string name="taxa_credito">Taxa</string>
+    <string name="valor_tx_credito">Valor Tarifa</string>
+    <string name="valor_total_credito">Valor Total</string>
+    <string name="numero_parcelas">Parcelas</string>
+</resources>

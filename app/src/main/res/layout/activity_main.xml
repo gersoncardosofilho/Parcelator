@@ -9,35 +9,55 @@
 
     <EditText
         android:id="@+id/editTextValorPrincipal"
-        android:layout_width="match_parent"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="14dp"
         android:inputType="numberDecimal"
         android:textAlignment="center"
         android:textSize="20dp"
         android:textStyle="bold" />
 
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="250dp"
-        android:layout_height="40dp"
+    <LinearLayout
+        android:id="@+id/botoesLayout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true" android:gravity="center"
         android:layout_below="@+id/editTextValorPrincipal"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:background="@color/colorPrimary"
-        android:text="@string/calcular"
-        android:textColor="@color/white"/>
+        android:layout_marginTop="9dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="150dp" android:layout_weight="1"
+            android:layout_height="40dp"
+            android:layout_below="@+id/editTextValorPrincipal"
+            android:background="@color/colorPrimary" android:layout_marginRight="10dp"
+            android:text="@string/calcular" android:layout_marginLeft="10dp"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/buttonLimpar" android:layout_weight="1"
+            android:layout_width="150dp" android:layout_marginRight="10dp"
+            android:layout_height="40dp"
+            android:background="@color/colorAccent"
+            android:text="LIMPAR"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
 
     <TextView
         android:id="@+id/titulodebito"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/button"
-        android:layout_marginTop="13dp"
+        android:layout_below="@+id/botoesLayout"
+        android:layout_marginTop="10dp"
         android:gravity="center"
-        android:text="DÉBITO" android:textStyle="bold" />
+        android:text="DÉBITO"
+        android:textStyle="bold" />
 
 
     <RelativeLayout
@@ -46,16 +66,15 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/titulodebito"
-        android:padding="10dp"
+        android:layout_marginTop="8dp"
         android:background="@color/light_yellow"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginBottom="10dp">
+        android:padding="10dp">
 
         <TextView
             android:id="@+id/textView1"
             android:layout_width="90dp"
-            android:layout_height="wrap_content" android:gravity="center"
+            android:layout_height="wrap_content"
+            android:gravity="center"
             android:text="@string/taxa_debito" />
 
         <TextView
@@ -71,9 +90,9 @@
             android:id="@+id/textView3"
             android:layout_width="110dp"
             android:layout_height="wrap_content"
+            android:layout_alignEnd="@id/textViewValorTotalDebito"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:layout_alignEnd="@id/textViewValorTotalDebito"
             android:gravity="center"
             android:text="@string/valor_total_debito" />
 
@@ -84,19 +103,19 @@
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/textView1"
             android:layout_marginTop="4dp"
-            android:textAlignment="center"
             android:inputType="numberDecimal"
-            android:text="2.39" />
+            android:text="2.39"
+            android:textAlignment="center" />
 
         <TextView
             android:id="@+id/textViewValorTarifaDebito"
             android:layout_width="110dp"
             android:layout_height="40dp"
+            android:layout_alignBaseline="@id/editTextTaxaDebito"
             android:layout_alignLeft="@id/editTextTaxaDebito"
             android:layout_below="@+id/textView2"
             android:layout_marginLeft="100dp"
             android:layout_marginTop="4dp"
-            android:layout_alignBaseline="@id/editTextTaxaDebito"
             android:textAlignment="center"
             android:textSize="20dp" />
 
@@ -104,15 +123,15 @@
             android:id="@+id/textViewValorTotalDebito"
             android:layout_width="110dp"
             android:layout_height="40dp"
+            android:layout_alignBaseline="@id/editTextTaxaDebito"
             android:layout_alignLeft="@id/textViewValorTarifaDebito"
             android:layout_below="@+id/textView2"
             android:layout_marginLeft="120dp"
             android:layout_marginTop="4dp"
-            android:textColor="@color/colorAccent"
             android:textAlignment="center"
-            android:textStyle="bold"
-            android:layout_alignBaseline="@id/editTextTaxaDebito"
-            android:textSize="20dp"/>
+            android:textColor="@color/colorAccent"
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
     </RelativeLayout>
 
@@ -124,7 +143,8 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/relativelayout1"
         android:gravity="center"
-        android:text="CRÉDITO" android:textStyle="bold" />
+        android:text="CRÉDITO"
+        android:textStyle="bold" />
 
     <RelativeLayout
         android:id="@+id/relativelayout2"
@@ -132,11 +152,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/titulocredito"
-        android:padding="10dp"
         android:background="@color/light_yellow"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp">
+        android:padding="10dp">
 
         <TextView
             android:id="@+id/textView11"
@@ -148,18 +165,19 @@
         <TextView
             android:id="@+id/textView22"
             android:layout_width="110dp"
-            android:gravity="center"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_toStartOf="@+id/textView33"
+            android:gravity="center"
             android:text="@string/valor_tx_debito" />
 
         <TextView
             android:id="@+id/textView33"
-            android:layout_width="110dp" android:gravity="center"
+            android:layout_width="110dp"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
+            android:gravity="center"
             android:text="@string/valor_total_debito" />
 
         <EditText
@@ -168,35 +186,36 @@
             android:layout_height="40dp"
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/textView11"
-            android:textAlignment="center"
             android:layout_marginTop="4dp"
             android:inputType="numberDecimal"
-            android:text="3.19" />
+            android:text="3.19"
+            android:textAlignment="center" />
 
         <TextView
             android:id="@+id/textViewValorTarifaCredito"
             android:layout_width="110dp"
             android:layout_height="40dp"
+            android:layout_alignBaseline="@id/editTextTaxaCredito"
             android:layout_alignLeft="@id/editTextTaxaCredito"
             android:layout_below="@+id/textView22"
             android:layout_marginLeft="100dp"
             android:layout_marginTop="4dp"
             android:textAlignment="center"
-            android:textSize="20dp"
-            android:layout_alignBaseline="@id/editTextTaxaCredito"/>
+            android:textSize="20dp" />
 
         <TextView
             android:id="@+id/textViewValorTotalCredito"
             android:layout_width="110dp"
             android:layout_height="40dp"
+            android:layout_alignBaseline="@id/editTextTaxaCredito"
             android:layout_alignLeft="@id/textViewValorTarifaCredito"
             android:layout_below="@+id/textView22"
             android:layout_marginLeft="120dp"
             android:layout_marginTop="4dp"
+            android:gravity="center"
             android:textColor="@color/colorAccent"
-            android:layout_alignBaseline="@id/editTextTaxaCredito"
             android:textSize="20dp"
-            android:textStyle="bold" android:gravity="center"/>
+            android:textStyle="bold" />
 
     </RelativeLayout>
 
@@ -216,11 +235,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/tituloparcelado"
-        android:padding="10dp"
         android:background="@color/light_yellow"
-        android:layout_marginBottom="10dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginLeft="5dp">
+        android:padding="10dp">
 
         <TextView
             android:id="@+id/textView111"
@@ -232,10 +248,10 @@
         <TextView
             android:id="@+id/textView222"
             android:layout_width="110dp"
-            android:gravity="center"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_toStartOf="@+id/textView333"
+            android:gravity="center"
             android:text="@string/valor_tx_debito" />
 
         <TextView
@@ -254,63 +270,65 @@
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/textView111"
             android:layout_marginTop="4dp"
+            android:gravity="center"
             android:inputType="numberDecimal"
-            android:text="3.79"
-            android:gravity="center" />
+            android:text="3.79" />
 
         <TextView
             android:id="@+id/textViewValorTarifaParcelado"
             android:layout_width="110dp"
             android:layout_height="40dp"
+            android:layout_alignBaseline="@id/editTextTaxaParcelado"
             android:layout_alignLeft="@id/editTextTaxaParcelado"
             android:layout_below="@+id/textView222"
             android:layout_marginLeft="100dp"
-            android:gravity="center"
-            android:layout_alignBaseline="@id/editTextTaxaParcelado"
             android:layout_marginTop="4dp"
+            android:gravity="center"
             android:textSize="20dp" />
 
         <TextView
             android:id="@+id/textViewValorTotalParcelado"
             android:layout_width="110dp"
             android:layout_height="40dp"
+            android:layout_alignBaseline="@id/editTextTaxaParcelado"
             android:layout_alignLeft="@id/textViewValorTarifaParcelado"
             android:layout_below="@+id/textView222"
             android:layout_marginLeft="120dp"
             android:layout_marginTop="4dp"
             android:gravity="center"
-            android:layout_alignBaseline="@id/editTextTaxaParcelado"
             android:textColor="@color/colorAccent"
-            android:textStyle="bold"
-            android:textSize="20dp" />
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
+        android:layout_above="@+id/bubleSeekParcelas"
+        android:layout_centerHorizontal="true"
         android:background="@color/light_yellow"
-        android:layout_marginRight="5dp"
-        android:layout_marginLeft="5dp" android:padding="10dp"
-        android:layout_below="@id/relativelayout3" >
+        android:padding="10dp"
+        android:id="@+id/relativeLayout" android:visibility="gone">
 
 
         <TextView
             android:id="@+id/textViewTituloValorParcela"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:text="Valor da Parcela" />
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:text="Valor da Parcela"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/textViewValorParcela"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:textColor="@color/colorAccent"
             android:textSize="20dp"
-            android:textStyle="bold"
-            android:textColor="@color/colorAccent"/>
+            android:textStyle="bold" />
 
 
     </RelativeLayout>
@@ -318,18 +336,24 @@
     <com.xw.repo.BubbleSeekBar
         android:id="@+id/bubleSeekParcelas"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" android:layout_alignParentBottom="true"
-        android:layout_marginTop="8dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/relativelayout3"
+        android:layout_marginTop="23dp"
         app:bsb_bubble_color="@color/light_green"
         app:bsb_bubble_text_color="@color/white"
-        app:bsb_max="10"
-        app:bsb_min="1" app:bsb_section_text_interval="10"
+        app:bsb_max="5"
+        app:bsb_min="1"
+        app:bsb_progress="0"
         app:bsb_second_track_color="@color/colorAccent"
+        app:bsb_section_text_interval="10"
         app:bsb_section_text_position="bottom_sides"
+        app:bsb_seek_by_section="true"
         app:bsb_show_section_mark="true"
         app:bsb_show_section_text="true"
         app:bsb_show_thumb_text="true"
-        app:bsb_seek_by_section="true" app:bsb_progress="0"
-        app:bsb_track_color="@color/colorPrimary"/>
+        app:bsb_track_color="@color/colorPrimary" />
+
+
 
 </RelativeLayout>

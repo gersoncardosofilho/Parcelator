@@ -339,20 +339,17 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/relativelayout3"
-        android:layout_marginTop="23dp"
-        app:bsb_bubble_color="@color/light_green"
-        app:bsb_bubble_text_color="@color/white"
-        app:bsb_max="5"
-        app:bsb_min="1"
-        app:bsb_progress="0"
-        app:bsb_second_track_color="@color/colorAccent"
-        app:bsb_section_text_interval="10"
-        app:bsb_section_text_position="bottom_sides"
-        app:bsb_seek_by_section="true"
+        android:layout_marginTop="36dp"
+        app:bsb_auto_adjust_section_mark="true"
+        app:bsb_second_track_color="@color/colorPrimary"
+        app:bsb_section_count="2"
+        app:bsb_seek_by_section="true" app:bsb_min="1" app:bsb_max="3"
+        app:bsb_section_text_position="below_section_mark"
         app:bsb_show_section_mark="true"
         app:bsb_show_section_text="true"
         app:bsb_show_thumb_text="true"
-        app:bsb_track_color="@color/colorPrimary" />
+        app:bsb_thumb_text_size="18sp"
+        app:bsb_touch_to_seek="true" />
 
 
 

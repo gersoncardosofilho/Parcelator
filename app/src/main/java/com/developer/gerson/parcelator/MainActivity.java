@@ -79,20 +79,34 @@ public class MainActivity extends AppCompatActivity implements ICalculos {
         rootView = findViewById(R.id.myActivity);
 
         initializeComponents();
+        bubbleSeekBarParcelas.setProgress(1);
         quantidadeParcelas = bubbleSeekBarParcelas.getProgress();
 
         doCalculation(quantidadeParcelas);
 
         bubbleSeekBarParcelas.setOnProgressChangedListener(new BubbleSeekBar.OnProgressChangedListenerAdapter() {
             @Override
-            public void onProgressChanged(int progress, float progressFloat) {
-                super.onProgressChanged(progress, progressFloat);
+            public void onProgressChanged(BubbleSeekBar bubbleSeekBar, int progress, float progressFloat) {
 
-                AtualizaValores(progress);
-
-                Log.i("Parcelas atualizadas: ", String.valueOf(progress));
+                if (etValorPrincipal.getText().toString().equals(""))
+                {
+                    return;
+                } else {
+                    AtualizaValores(progress);
+                    Log.i("Parcelas atualizadas: ", String.valueOf(progress));
+                    super.onProgressChanged(bubbleSeekBar, progress, progressFloat);
+                }
             }
         });
+
+        etValorPrincipal.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                if (hasWindowFocus())
+                    bubbleSeekBarParcelas.setProgress(1);
+            }
+        });
+
 
     }
 
@@ -128,7 +142,7 @@ public class MainActivity extends AppCompatActivity implements ICalculos {
         calculos.setValorDebito(tvValorTotalDebito.getText().toString());
         calculos.setValorCredito(tvValorTotalCredito.getText().toString());
         calculos.setValorParcelado(tvValorTotalParcelado.getText().toString());
-        calculos.setQuantidadeDeParcelas(quantidadeParcelas);
+        calculos.setQuantidadeDeParcelas(bubbleSeekBarParcelas.getProgress());
         calculos.setValorDaParcela(tvValorParcela.getText().toString());
 
         Intent intent = new Intent(this, MainActivity2.class);
@@ -162,55 +176,53 @@ public class MainActivity extends AppCompatActivity implements ICalculos {
         tvValorTarifaDebito.setText("");
         tvValorTarifaCredito.setText("");
         tvValorTarifaParcelado.setText("");
+        bubbleSeekBarParcelas.setProgress(1);
     }
 
 
 
     private void AtualizaValores(int quantidadeParcelas) {
 
-
-        //Debito
-
-        Double taxaDebito = Double.parseDouble(etTaxaDebito.getText().toString());
-        Double valorPrincipal = GetValorPrincipal();
-        Double formulaDebito = GetFormula(taxaDebito);
-        Double valorTotal = valorPrincipal / formulaDebito;
-        Double valorTarifaDebito = GetValorTaxa(taxaDebito, valorPrincipal);
+            //Debito
+            Double taxaDebito = Double.parseDouble(etTaxaDebito.getText().toString());
+            Double valorPrincipal = GetValorPrincipal();
+            Double formulaDebito = GetFormula(taxaDebito);
+            Double valorTarifaDebito = GetValorTaxa(taxaDebito, valorPrincipal);
+            Double valorTotal = valorPrincipal + valorTarifaDebito;
 
 
-        Log.i("Taxa: ===>", taxaDebito.toString());
-        Log.i("Valor principal ===>", GetValorPrincipal().toString());
-        Log.i("Tarifa debito ===>", valorTarifaDebito.toString());
-        Log.i("Formula ===>", formulaDebito.toString());
-        Log.i("Valor total===>", valorTotal.toString());
+
+            Log.i("Taxa: ===>", taxaDebito.toString());
+            Log.i("Valor principal ===>", GetValorPrincipal().toString());
+            Log.i("Tarifa debito ===>", valorTarifaDebito.toString());
+            Log.i("Formula ===>", formulaDebito.toString());
+            Log.i("Valor total===>", valorTotal.toString());
 
 
-        tvValorTarifaDebito.setText(nf.format(valorTarifaDebito));
-        tvValorTotalDebito.setText(nf.format(valorTotal));
+            tvValorTarifaDebito.setText(nf.format(valorTarifaDebito));
+            tvValorTotalDebito.setText(nf.format(valorTotal));
 
-       //Credito
-        Double taxaCredito = Double.parseDouble(etTaxaCredito.getText().toString());
-        Double formulaCredito = GetFormula(taxaCredito);
-        Double valorTotalCredito = valorPrincipal / formulaCredito;
-        Double valorTarifaCredito = GetValorTaxa(taxaCredito, valorPrincipal);
+            //Credito
+            Double taxaCredito = Double.parseDouble(etTaxaCredito.getText().toString());
+            Double formulaCredito = GetFormula(taxaCredito);
+            Double valorTarifaCredito = GetValorTaxa(taxaCredito, valorPrincipal);
+            Double valorTotalCredito = valorPrincipal + valorTarifaCredito;
 
-        tvValorTarifaCredito.setText(nf.format(valorTarifaCredito));
-        tvValorTotalCredito.setText(nf.format(valorTotalCredito));
+
+            tvValorTarifaCredito.setText(nf.format(valorTarifaCredito));
+            tvValorTotalCredito.setText(nf.format(valorTotalCredito));
 //
 //        //Parcelado
-        Double taxaParcelado = Double.parseDouble(etTaxaParcelado.getText().toString());
-        Double formulaParcelado = GetFormula(taxaParcelado);
+            Double taxaParcelado = Double.parseDouble(etTaxaParcelado.getText().toString());
+            Double formulaParcelado = (GetFormula(taxaParcelado) * quantidadeParcelas);
+            Double valorTarifaParcelado = (GetValorTaxa(taxaParcelado, valorPrincipal) * quantidadeParcelas);
+            Double valorTotalParcelado = (valorPrincipal + valorTarifaParcelado);
+            Double valorParcela = valorTotalParcelado / quantidadeParcelas;
 
-        Double valorTotalParcelado = valorPrincipal / formulaParcelado;
 
-
-        Double valorTarifaParcelado = GetValorTaxa(taxaParcelado, valorPrincipal);
-        Double valorParcela = valorTotalParcelado / quantidadeParcelas;
-
-        tvValorTarifaParcelado.setText(nf.format(valorTarifaParcelado));
-        tvValorTotalParcelado.setText(nf.format(valorTotalParcelado));
-        tvValorParcela.setText(nf.format(valorParcela));
-
+            tvValorTarifaParcelado.setText(nf.format(valorTarifaParcelado));
+            tvValorTotalParcelado.setText(nf.format(valorTotalParcelado));
+            tvValorParcela.setText(nf.format(valorParcela));
 
     }
 
